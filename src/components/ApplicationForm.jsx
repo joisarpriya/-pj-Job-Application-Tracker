@@ -1,87 +1,63 @@
-import { useState } from "react";
-
-function ApplicationForm({ addApplication }) {
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState("Applied");
-  const [appliedDate, setAppliedDate] = useState("");
-  const [followUpDate, setFollowUpDate] = useState("");
-
+export default function ApplicationForm({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newApplication = {
+    const form = e.target;
+
+    const newApp = {
       id: Date.now(),
-      company,
-      role,
-      status,
-      appliedDate,
-      followUpDate,
+      company: form.company.value,
+      role: form.role.value,
+      status: form.status.value,
+      applied_date: form.date.value,
+      notes: form.notes.value,
     };
 
-    addApplication(newApplication);
-
-    // Clear form after submit
-    setCompany("");
-    setRole("");
-    setStatus("Applied");
-    setAppliedDate("");
-    setFollowUpDate("");
+    onAdd(newApp);
+    form.reset();
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Add New Application</h2>
+    <form onSubmit={handleSubmit} className="glass p-6 rounded-2xl space-y-4">
+      <h3 className="text-xl font-semibold">Add Application</h3>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          maxWidth: "400px",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Company Name"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        />
+      <input
+        name="company"
+        placeholder="Company"
+        className="w-full p-2 rounded"
+        required
+      />
 
-        <input
-          type="text"
-          placeholder="Job Role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        />
+      <input
+        name="role"
+        placeholder="Role"
+        className="w-full p-2 rounded"
+        required
+      />
 
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="Applied">Applied</option>
-          <option value="Interview">Interview</option>
-          <option value="Offer">Offer</option>
-          <option value="Rejected">Rejected</option>
-        </select>
+      <select name="status" className="w-full p-2 rounded">
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Offer</option>
+        <option>Rejected</option>
+      </select>
 
-        <input
-          type="date"
-          value={appliedDate}
-          onChange={(e) => setAppliedDate(e.target.value)}
-        />
+      <input type="date" name="date" className="w-full p-2 rounded" required />
 
-        <input
-          type="date"
-          value={followUpDate}
-          onChange={(e) => setFollowUpDate(e.target.value)}
-        />
+      <textarea
+        name="notes"
+        placeholder="Notes"
+        className="w-full p-2 rounded"
+      />
 
-        <button type="submit">Add Application</button>
-      </form>
-    </div>
+      <button className="bg-indigo-600 text-white px-4 py-2 rounded-xl w-full hover:bg-indigo-700 transition">
+        Save Application
+      </button>
+    </form>
   );
 }
 
-export default ApplicationForm;
+
+
+
+
