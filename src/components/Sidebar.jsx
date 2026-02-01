@@ -1,17 +1,36 @@
-export default function Sidebar({ open, setOpen }) {
-  return (
-    <div
-      className={`glass fixed md:relative top-0 left-0 h-screen w-64 p-5 transition-transform duration-300 z-40
-      ${open ? "translate-x-0" : "-translate-x-64 md:translate-x-0"}`}
-    >
-      <h2 className="text-white text-xl font-bold mb-6">Menu</h2>
+import { Link } from "react-router-dom";
 
-      <ul className="space-y-4 text-white">
-        <li className="hover:bg-white/10 p-2 rounded-lg cursor-pointer">Dashboard</li>
-        <li className="hover:bg-white/10 p-2 rounded-lg cursor-pointer">Applications</li>
-        <li className="hover:bg-white/10 p-2 rounded-lg cursor-pointer">Interviews</li>
-        <li className="hover:bg-white/10 p-2 rounded-lg cursor-pointer">Settings</li>
-      </ul>
+const Sidebar = () => {
+  return (
+    <div className="w-64 glass text-white min-h-screen p-5">
+      <h2 className="text-2xl font-bold heading text-[#FF8A00] mb-8 tracking-wide">
+        ApplyFlow
+      </h2>
+
+      <nav className="space-y-4 sidebar-text">
+        <Link
+          to="/"
+          className="block p-3 rounded-lg hover:bg-white/10 transition-all"
+        >
+          Dashboard
+        </Link>
+
+        <Link
+          to="/applications"
+          className="block p-3 rounded-lg hover:bg-white/10 transition-all"
+        >
+          Applications
+        </Link>
+
+        <Link
+          to="/interviews"
+          className="block p-3 rounded-lg hover:bg-white/10 transition-all"
+        >
+          Interviews
+        </Link>
+      </nav>
     </div>
   );
-}
+};
+
+export default Sidebar;

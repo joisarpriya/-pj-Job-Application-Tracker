@@ -1,0 +1,20 @@
+John Doe
+Email: john.doe@example.com
+Phone: +1234567890
+
+Summary:
+Aspiring frontend developer with experience building React apps using Tailwind CSS and TypeScript.
+
+Skills:
+- JavaScript, TypeScript, React, Tailwind, CSS, HTML
+- Node.js, Express, MySQL
+
+Projects:
+- Portfolio site (React, Tailwind) - Increased engagement by 20%.
+- Task Manager API (Node.js, Express, MySQL) - Implemented authentication and REST endpoints.
+
+Experience:
+Intern, Acme Corp (June 2023 - Aug 2023) - Contributed to UI components and testing.
+
+Education:
+B.Tech in Computer Science
