@@ -38,7 +38,23 @@ jobs:
       - name: Push image
         run: |
           docker push ghcr.io/${{ github.repository }}/applyflow-backend:latest
-      # Optionally call Render/Railway API here using secrets
+
+      - name: Install Railway CLI
+        run: |
+          npm install -g @railway/cli
+
+      - name: Railway login & deploy (if RAILWAY_API_KEY set)
+        env:
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
+        run: |
+          if [ -z "$RAILWAY_API_KEY" ]; then
+            echo "No RAILWAY_API_KEY provided; skipping Railway deploy. To enable, add RAILWAY_API_KEY to repository secrets."
+            exit 0
+          fi
+          railway login --apiKey "$RAILWAY_API_KEY"
+          cd backend || exit 1
+          # Try a non-interactive deploy; this may create/link the project if not present
+          railway up --yes --detach || railway deploy || (echo "Railway deploy failed; check logs" && exit 1)
 
   deploy-frontend:
     runs-on: ubuntu-latest

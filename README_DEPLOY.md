@@ -12,6 +12,12 @@ Deploy guide — quick steps
 
 - Option B: Use Railway or Render direct Git deployment; set environment variables via their UI.
 
+> GitHub Actions deploy (no GitHub App required)
+>
+> - Add `RAILWAY_API_KEY` to your GitHub repository Secrets (Settings → Security → Secrets and variables → Actions).
+> - The CI will build and push the backend Docker image to GHCR and — if `RAILWAY_API_KEY` is set — run the Railway CLI to deploy the backend automatically on push to `main`.
+> - If you prefer to use the Railway GitHub App instead of a token, that still works and is the recommended approach for long-term security.
+
 3) Database
 - Provision a managed MySQL instance and set credentials in the Render/Railway service.
 - The server runs `setup/dbInit.js` on start to create tables.
