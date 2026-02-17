@@ -1,1 +1,158 @@
-@import "./input.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------
+   THEME VARIABLES
+------------------------*/
+:root {
+  --bg-main: #0b0b0f;
+  --bg-panel: rgba(255, 255, 255, 0.06);
+  --border-soft: rgba(255, 255, 255, 0.12);
+
+  --accent-main: #ff8a00;
+  --accent-soft: #ffd6a0;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  color-scheme: dark;
+}
+
+/* -----------------------
+   BASE RESET
+------------------------*/
+body {
+  margin: 0;
+  background: radial-gradient(
+    1200px circle at top left,
+    #14141c 0%,
+    var(--bg-main) 40%
+  );
+  color: var(--text-main);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -----------------------
+   TYPOGRAPHY
+------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  font-family: "Outfit", system-ui, sans-serif;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* -----------------------
+   GLASS SYSTEM
+------------------------*/
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-soft);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* -----------------------
+   BUTTONS
+------------------------*/
+button {
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--accent-main),
+    #ffb347
+  );
+  color: #0b0b0f;
+  border-radius: 0.9rem;
+  padding: 0.65rem 1.2rem;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(255, 138, 0, 0.35);
+}
+
+/* -----------------------
+   INPUTS
+------------------------*/
+input,
+select,
+textarea {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.75rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-main);
+  box-shadow: 0 0 0 2px rgba(255, 138, 0, 0.2);
+}
+
+/* -----------------------
+   TABLES
+------------------------*/
+table {
+  border-collapse: collapse;
+}
+
+th {
+  color: var(--accent-soft);
+  font-weight: 500;
+  padding-bottom: 0.75rem;
+}
+
+td {
+  padding: 0.6rem 0;
+  color: var(--text-main);
+}
+
+/* -----------------------
+   SCROLLBAR (SUBTLE)
+------------------------*/
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
