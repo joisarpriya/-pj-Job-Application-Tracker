@@ -37,9 +37,16 @@ const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || "0.0.0.0";
 
 const server = app.listen(PORT, HOST, () => {
-  const addr = (server && typeof server.address === 'function') ? server.address() : { address: HOST, port: PORT };
-  console.log(`Backend running on ${addr.address}:${addr.port}`);
-  console.log("Server address:", addr);
+  let addr = null;
+  if (server && typeof server.address === 'function') {
+    addr = server.address();
+  }
+  if (addr && addr.address && addr.port) {
+    console.log(`Backend running on ${addr.address}:${addr.port}`);
+    console.log("Server address:", addr);
+  } else {
+    console.log(`Backend running, but address info unavailable. HOST: ${HOST}, PORT: ${PORT}`);
+  }
 });
 
 server.on('error', (err) => {

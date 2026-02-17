@@ -9,6 +9,7 @@ export default function Dashboard() {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showMatches, setShowMatches] = useState(false);
   const [matches, setMatches] = useState([]);
+  const [prep, setPrep] = useState(null);
 
   useEffect(() => {
     api.get("/stats").then((res) => setStats(res.data));
@@ -22,8 +23,6 @@ export default function Dashboard() {
       <p className={`text-3xl font-bold ${color}`}>{value}</p>
     </div>
   );
-
-  const [prep, setPrep] = useState(null);
 
   return (
     <div className="space-y-6">
